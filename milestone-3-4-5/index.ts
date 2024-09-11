@@ -18,20 +18,37 @@ form.addEventListener("submit", (event: Event) => {
         generatedResume.innerHTML = `
             <div class="resume-content">
                 <h3 class="section-header">Personal Information</h3>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
+                <p contenteditable="true"><strong>Name:</strong> ${name}</p>
+                <p contenteditable="true"><strong>Email:</strong> ${email}</p>
+                <p contenteditable="true"><strong>Phone:</strong> ${phone}</p>
 
                 <h3 class="section-header">Education</h3>
-                <p>${education}</p>
+                <p contenteditable="true">${education}</p>
 
                 <h3 class="section-header">Work Experience</h3>
-                <p>${work}</p>
+                <p contenteditable="true">${work}</p>
 
                 <h3 class="section-header">Skills</h3>
-                <p>${skills.split(',').map(skill => `<span class="skill">${skill.trim()}</span>`).join(' ')}</p>
+                <p contenteditable="true">${skills.split(',').map(skill => `<span class="skill">${skill.trim()}</span>`).join(' ')}</p>
             </div> `;
+
+            //Editable functionality for each section
+        makeSectionsEditable();
+
     } else {
         alert("Please fill in all fields!");
     }
 });
+
+// Function to make resume sections editable
+function makeSectionsEditable() {
+    const editableSections = document.querySelectorAll('[contenteditable="true"]');
+
+    editableSections.forEach(section => {
+        section.addEventListener('input', (element) => {
+            const target = element.target as HTMLElement;
+            console.log(`Content updated: ${target.innerHTML}`);
+           
+        });
+    });
+}

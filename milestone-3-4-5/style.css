@@ -2,7 +2,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #bcf7d9;
+    background-color:slategrey;
     padding: 20px;
 }
 
@@ -46,6 +46,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
 }
 
 button:hover {
@@ -54,11 +55,12 @@ button:hover {
 
 /* Generated Resume Styling */
 #resume {
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
+    border-top: 2px solid #007bff;
 }
 
 .resume-content h3 {
@@ -70,6 +72,7 @@ button:hover {
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 10px;
+    
 }
 
 .resume-content .section-header {
@@ -89,3 +92,4 @@ button:hover {
     display: inline-block;
     margin-bottom: 5px;
 }
+
