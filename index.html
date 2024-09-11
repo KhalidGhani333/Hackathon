@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <div class="container">
+        <h1>Interactive Resume Builder </h1>
+
+        <!--capture user input -->
+        <form id="resume-form">
+            <!-- Personal Information -->
+            <h2>Personal Information</h2>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <!-- Profile Picture-->
+             <label for="profitPicture">Profile Picture</label>
+             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+
+            <!-- Education Section -->
+            <h2>Education</h2>
+            <label for="education">Degree and School:</label>
+            <input type="text" id="education" name="education" required>
+
+            <!-- Work Experience Section -->
+            <h2>Work Experience</h2>
+            <label for="work">Position and Company:</label>
+            <input type="text" id="work" name="work" required>
+
+            <!-- Skills Section -->
+            <h2>Skills</h2>
+            <label for="skills">Skills (comma separated):</label>
+            <input type="text" id="skills" name="skills" required>
+
+            <button type="submit">Generate Resume</button>
+        </form>
+        <hr>
+        <!-- Generated Resume -->
+        <section id="resume">
+            <h2>Generated Resume</h2>
+            <div id="generated-resume" class="resume-content">
+            </div>
+        </section>
+    </div>
+
+    
+    <script src="index.js"></script>
+</body>
+</html>
