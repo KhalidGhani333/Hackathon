@@ -63,16 +63,6 @@ button:hover {
     border-top: 2px solid #007bff;
 }
 
-.profilePicture{
-    display: block;
-    margin: 0 auto;
-    border: 2px solid #007bff;
-    box-shadow: 0 4px 10px rgba(199, 86, 86, 1);
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-}
 .resume-content h3 {
     color: #2c3e50;
     margin-bottom: 10px;
