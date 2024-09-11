@@ -54,6 +54,18 @@ button:hover {
 }
 
 /* Generated Resume Styling */
+
+.profilePicture {
+display: block;
+margin: 0 auto;
+border: 2px solid #007bff;
+box-shadow: 0 4px 10px rgba(199, 86, 86, 1);
+border-radius: 50%;
+width: 200px;
+height: 200px;
+object-fit: cover;
+}
+
 #resume {
     margin-top: 50px;
     padding: 20px;

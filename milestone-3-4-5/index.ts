@@ -5,6 +5,7 @@ form.addEventListener("submit", (event: Event) => {
     event.preventDefault(); 
 
     // Fetch form data
+    const profilePictureInput = document.getElementById("profilePicture") as HTMLInputElement
     const name = (document.getElementById("name") as HTMLInputElement).value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
     const phone = (document.getElementById("phone") as HTMLInputElement).value;
@@ -12,12 +13,16 @@ form.addEventListener("submit", (event: Event) => {
     const work = (document.getElementById("work") as HTMLInputElement).value;
     const skills = (document.getElementById("skills") as HTMLInputElement).value;
 
-    
-    if (name && email && phone && education && work && skills) {
+
+    const profilePictureFile = profilePictureInput.files?.[0]
+    const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : "";
+
+    if (profilePictureInput && name && email && phone && education && work && skills) {
         // dynamic resume content
         generatedResume.innerHTML = `
             <div class="resume-content">
                 <h3 class="section-header">Personal Information</h3>
+                ${profilePictureURL ? `<img src="${profilePictureURL}"alt="Profile Picture" class="profilePicture">`: ''};
                 <p contenteditable="true"><strong>Name:</strong> ${name}</p>
                 <p contenteditable="true"><strong>Email:</strong> ${email}</p>
                 <p contenteditable="true"><strong>Phone:</strong> ${phone}</p>
