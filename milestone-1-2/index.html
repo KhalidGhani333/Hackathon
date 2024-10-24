@@ -1,89 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Khalid Ghani _ Resume</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khalid Ghani_Resume</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="resume-container">
-        <!-- Personal Information Section -->
-        <section id="personal-info" class="section">
-            <div class="info-header">
-                <img src="pic.jpeg" alt="Profile Picture" class="profile-pic">
-                <div class="personal-details">
-                    <h1>Khalid Ghani</h1>
-                    <p>Frontend Developer</p>
-                    <p>Email: <a href="mailto:khalidghani.333@gmail.com">khalidghani.333@gmail.com</a></p>
-                    <p>Phone: 0306-3549393</p>
-                </div>
-            </div>
-        </section>
+  <div class="cv-container">
+    <!-- Left Sidebar -->
+    <div class="left-sidebar">
+      <img src="pic.jpeg" alt="Profile Picture" class="profile-pic">
+      <section class="about-me">
+        <h2>About Me</h2>
+        <p>An enthusiastic, honest and hardworking individual who is highly motivated and can
+            work as part of a team or as an individual. Enjoy being set challenges and then overcoming them,and constantly work towards personal goals and achievements to further better skillset and experiences</p>
+        <ul>
+          <li><strong>Phone:</strong> 0312-3549066</li>
+          <li><strong>Email:</strong> khalidghani.333@gmail.com</li>
+          <li><strong>Address:</strong> House B-33 Block 1 Gulshan-e-Iqbal,Karachi</li>
+        </ul>
+      </section>
 
-        <hr>
-
-        <!-- Education Section -->
-        <section id="education" class="section">
-            <h2>Education</h2>
-            <div class="section-content">
-                <div class="edu-item">
-                    <h3>GIAIC:</h3>
-                    <p>Cloud Applied Generative AI Engineering.</p>
-                    <p>Present</p>
-                </div>
-                <div class="edu-item">
-                    <h3>Islamia Arts & Commerce College:</h3>
-                    <p>Intermediate in Commerce</p>
-                    <p>2017 - 2019</p>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section hidden">
-            <h2>Skills</h2>
-            <div class="skills-list">
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">TypeScript</span>
-                <span class="skill">Next.js</span>
-                <span class="skill">React</span>
-                <span class="skill">Tailwind CSS</span>
-            </div>
-        </section>
-
-        <hr>
-
-        <!-- Work Experience Section -->
-        <section id="experience" class="section">
-            <h2>Work Experience</h2>
-            <div class="section-content">
-                <div class="work-item">
-                    <h3>Frontend Developer</h3>
-                    <p>(Present)</p>
-                    <p>Working on modern web applications using Next.js, TypeScript, and Tailwind CSS.</p>
-                </div>
-                <div class="work-item">
-                    <h3>Mecatron Solutions</h3>
-                    <p>2023-2024</p>
-                    <p>At Mecatron Solutions, I excel as an admin manager</p>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <!-- Toggle Button for Skills -->
-        <div class="toggle-buttons">
-            <button id="toggle-skills-btn">Show Skills</button>
-        </div>
+      <section class="skills">
+        <h2>Language</h2>
+        <ul>
+          <li>English</li>
+          <li>Urdu</li>
+        </ul>
+        
+        <h2>Expertise</h2>
+        <ul>
+          <li>Management Skills</li>
+          <li>Microsoft office </li>
+          <li>BookKeeping </li>
+          <li>Customer Dealing </li>
+          <li>Problem Solving & logical Thinking</li>
+        </ul>
+      </section>
     </div>
 
-    <script src="index.js"></script>
+    <!-- Main Content -->
+    <div class="main-content">
+      <section class="personal-info">
+        <h1>KHALID GHANI</h1>
+        <p>FrontEnd Developer</p>
+        <p>I am a <strong>Frontend Developer</strong> focused on building engaging user interfaces and ensuring a seamless user experience through technologies. I specialize in making web applications visually appealing, interactive, and responsive across various devices</p>
+      </section>
+
+      <section class="experience">
+        <h2>Experience</h2>
+        <div class="job">
+          <h3>Mecatron Solution</h3>
+          <span>Present</span>
+          <p>At Mecatron Solutions, I excel as an admin manager, overseeing daily operations with precision and also handle the logistics department, ensuring smooth import processes.Committed to efficiency and excellence in every task</p>
+        </div>
+
+        <div class="job">
+          <h3>Pak Marble Factory</h3>
+          <span>2020 - 2023</span>
+          <p>I oversaw the daily operations, ensuring smooth production and high quality results. Apart from this, I was handling sales and accounts to standardize the business
+        </p>
+        </div>
+
+        <div class="job">
+          <h3>Hayat Garments</h3>
+          <span>2018 - 2020</span>
+          <p>Managed financial health and financial responsibilities as an accountant in Hayat Garment, ensured accurate handling of expenses and liabilities. Maintained financial records and improved budget allocation for operational efficiency</p>
+        </div>
+      </section>
+
+      <section class="education">
+        <h2>Education</h2>
+        <div class="school">
+          <h3>GIAIC</h3>
+          <p>Cloud Applied Generative AI Engineering.(Present)
+        </p>
+        <h3>Intermediate</h3>
+          <p>Intermediate from Karachi Board.(2019)
+        </p>
+        </div>
+      </section>
+
+              <!-- Skills Section -->
+              <section id="skills" class="section hidden">
+                <h2>Skills</h2>
+                <div class="skills-list">
+                    <span class="skill">HTML5</span>
+                    <span class="skill">CSS3</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">TypeScript</span>
+                    <span class="skill">Next.js</span>
+                    <span class="skill">Tailwind CSS</span>
+                </div>
+            </section>
+            <div class="toggle-buttons">
+                <button id="toggle-skills-btn">Show Skills</button>
+            </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
 </body>
 </html>
