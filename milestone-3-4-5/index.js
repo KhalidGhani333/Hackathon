@@ -1,77 +1,77 @@
-var form = document.getElementById("resume-form");
-var generatedResume = document.getElementById("generated-resume");
-var shareableLinkContainer = document.getElementById("shareable-link-container");
-var shareableLinkElement = document.getElementById("shareable-link");
-var downloadPdfButton = document.getElementById("download-pdf");
-form.addEventListener("submit", function (event) {
-    var _a;
-    event.preventDefault();
-    // Fetch form data
-    var username = document.getElementById("username").value;
-    var profilePictureInput = document.getElementById("profilePicture");
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value;
-    var education = document.getElementById("education").value;
-    var work = document.getElementById("work").value;
-    var skills = document.getElementById("skills").value;
-    //save form data in localstorage with the username as the key
-    var resumeData = {
-        name: name,
-        email: email,
-        phone: phone,
-        education: education,
-        work: work,
-        skills: skills
-    };
-    localStorage.setItem(username, JSON.stringify(resumeData)); //save the data locally
-    var profilePictureFile = (_a = profilePictureInput.files) === null || _a === void 0 ? void 0 : _a[0];
-    var profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : "";
-    if (profilePictureInput && name && email && phone && education && work && skills) {
-        // dynamic resume content
-        generatedResume.innerHTML = "\n            <div class=\"resume-content\">\n                <h3 class=\"section-header\">Personal Information</h3>\n                ".concat(profilePictureURL ? "<img src=\"".concat(profilePictureURL, "\"alt=\"Profile Picture\" class=\"profilePicture\">") : '', "\n                <p contenteditable=\"true\"><strong>Name:</strong> ").concat(name, "</p>\n                <p contenteditable=\"true\"><strong>Email:</strong> ").concat(email, "</p>\n                <p contenteditable=\"true\"><strong>Phone:</strong> ").concat(phone, "</p>\n\n                <h3 class=\"section-header\">Education</h3>\n                <p contenteditable=\"true\">").concat(education, "</p>\n\n                <h3 class=\"section-header\">Work Experience</h3>\n                <p contenteditable=\"true\">").concat(work, "</p>\n\n                <h3 class=\"section-header\">Skills</h3>\n                <p contenteditable=\"true\">").concat(skills.split(',').map(function (skill) { return "<span class=\"skill\">".concat(skill.trim(), "</span>"); }).join(' '), "</p>\n            </div> ");
-        //Editable functionality for each section
-        makeSectionsEditable();
-    }
-    else {
-        alert("Please fill in all fields!");
-    }
-    //generate a shareable URL with the username only
-    var shareableURL = "".concat(window.location.origin, "?username =").concat(encodeURIComponent(username));
-    //display the shareable link
-    shareableLinkContainer.style.display = 'block';
-    shareableLinkElement.href = shareableURL;
-    shareableLinkElement.textContent = shareableURL;
-});
-//handle PDF Download
-downloadPdfButton.addEventListener("click", function () { window.print(); }); //this will open print dialog
-//prefill the form based on the username in the URL
-window.addEventListener('DOMContentLoaded', function () {
-    var URLparam = new URLSearchParams(window.location.search);
-    var username = URLparam.get('username');
-    if (username) {
-        //autofill form if data is found in localstorage
-        var saveResumeData = localStorage.getItem(username);
-        if (saveResumeData) {
-            var resumeData = JSON.parse(saveResumeData);
-            document.getElementById('username').value = username;
-            document.getElementById("profilePicture").value = resumeData.profilePicture;
-            document.getElementById('name').value = resumeData.name;
-            document.getElementById('email').value = resumeData.email;
-            document.getElementById('phone').value = resumeData.phone;
-            document.getElementById('education').value = resumeData.education;
-            document.getElementById('work').value = resumeData.work;
-            document.getElementById('skills').value = resumeData.skills;
-        }
-    }
-});
-// Function to make resume sections editable
-function makeSectionsEditable() {
-    var editableSections = document.querySelectorAll('[contenteditable="true"]');
-    editableSections.forEach(function (section) {
-        section.addEventListener('input', function (element) {
-            var target = element.target;
-            console.log("Content updated: ".concat(target.innerHTML));
-        });
-    });
+var _a;
+// Function to add an additional education field
+function addEducationField() {
+    var educationSection = document.getElementById('education-section');
+    var newEducationEntry = document.createElement('div');
+    newEducationEntry.className = 'education-entry';
+    newEducationEntry.innerHTML = "\n        <label>Degree and School:</label>\n        <input type=\"text\" class=\"education\" name=\"education\" required>\n    ";
+    educationSection.appendChild(newEducationEntry);
 }
+// Function to add an additional work field
+function addWorkField() {
+    var workSection = document.getElementById('work-section');
+    var newWorkEntry = document.createElement('div');
+    newWorkEntry.className = 'work-entry';
+    newWorkEntry.innerHTML = "\n        <label>Position and Company:</label>\n        <input type=\"text\" class=\"work\" name=\"work\" required>\n    ";
+    workSection.appendChild(newWorkEntry);
+}
+// Function to add an additional skill field
+function addSkillField() {
+    var skillsSection = document.getElementById('skills-section');
+    var newSkillEntry = document.createElement('div');
+    newSkillEntry.className = 'skills-entry';
+    newSkillEntry.innerHTML = "\n        <label>Skill:</label>\n        <input type=\"text\" class=\"skill\" name=\"skills\" required>\n    ";
+    skillsSection.appendChild(newSkillEntry);
+}
+// Function to add an additional skill field
+function addHobbiesField() {
+    var hobbySection = document.getElementById('Hobbies-section');
+    var newhobbyEntry = document.createElement('div');
+    newhobbyEntry.className = 'hobby-entry';
+    newhobbyEntry.innerHTML = "\n        <label>Hobby:</label>\n        <input type=\"text\" class=\"hobby\" name=\"hobby\" required>\n    ";
+    hobbySection.appendChild(newhobbyEntry);
+}
+// Generate the resume content on form submission
+(_a = document.getElementById('resume-form')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', function (event) {
+    event.preventDefault();
+    // Capture user inputs
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var profilePictureInput = document.getElementById('profilePicture');
+    var profilePictureFile = profilePictureInput.files ? profilePictureInput.files[0] : null;
+    var profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : "";
+    var educations = Array.from(document.getElementsByClassName('education')).map(function (input) { return input.value; });
+    var works = Array.from(document.getElementsByClassName('work')).map(function (input) { return input.value; });
+    var skills = Array.from(document.getElementsByClassName('skill')).map(function (input) { return input.value; });
+    var hobbies = Array.from(document.getElementsByClassName('hobby')).map(function (input) { return input.value; });
+    // the resume section with the gathered information
+    var generatedResume = document.getElementById('generated-resume');
+    generatedResume.innerHTML = "\n        <div class=\"resume-content\">\n            <h3>Personal Information</h3>\n            ".concat(profilePictureURL ? "<img src=\"".concat(profilePictureURL, "\" alt=\"Profile Picture\" class=\"profilePicture\">") : '', "\n            <p><strong>Name:</strong> ").concat(name, "</p>\n            <p><strong>Email:</strong> ").concat(email, "</p>\n            <p><strong>Phone:</strong> ").concat(phone, "</p>\n            \n\n            <h3>Education</h3>\n            <ul>").concat(educations.map(function (edu) { return "<li>".concat(edu, "</li>"); }).join(''), "</ul>\n\n            <h3>Work Experience</h3>\n            <ul>").concat(works.map(function (work) { return "<li>".concat(work, "</li>"); }).join(''), "</ul>\n\n            <h3>Skills</h3>\n            <ul>").concat(skills.map(function (skill) { return "<li>".concat(skill, "</li>"); }).join(''), "</ul>\n\n            <h3>Hobbies</h3>\n            <ul>").concat(hobbies.map(function (hobbies) { return "<li>".concat(hobbies, "</li>"); }).join(''), "</ul>\n            </div>\n    ");
+    document.getElementById('resume').style.display = 'block';
+});
+//          PDF Download 
+var downloadPdfButton = document.getElementById('download-pdf');
+var resumeContent = document.getElementsByClassName("resume-content");
+downloadPdfButton.addEventListener('click', function () {
+    if (typeof html2pdf === 'undefined') {
+        alert('Error: html2pdf library is not loaded.');
+        return;
+    }
+    // Options for PDF generation
+    var resumeOptions = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 1.0 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    // Generating PDF from the first element in resumeContent
+    html2pdf()
+        .from(resumeContent[0])
+        .set(resumeOptions)
+        .save()
+        .catch(function (error) {
+        console.error('PDF generation error:', error);
+    });
+});

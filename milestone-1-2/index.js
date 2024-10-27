@@ -1,4 +1,3 @@
-
 var toggleSkillsButton = document.getElementById("toggle-skills-btn");
 var skillsSection = document.getElementById("skills");
 toggleSkillsButton.addEventListener("click", function () {

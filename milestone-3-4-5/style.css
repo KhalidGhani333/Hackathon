@@ -1,17 +1,16 @@
 
-
 body {
     font-family: Arial, sans-serif;
-    background-color:slategrey;
+    background: linear-gradient(to bottom , rgb(164, 226, 164),rgb(161, 241, 224)); 
     padding: 20px;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
-    background: rgb(210, 224, 222);
+    background:white;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(199, 86, 86, 1);
+    box-shadow: 0 4px 10px black;
     border-radius: 10px;
 }
 
@@ -28,6 +27,7 @@ form {
 
 label {
     font-weight: bold;
+    
 }
 
 input {
@@ -35,18 +35,21 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    width: 98%;
+    box-shadow: 0 5px 10px rgb(167, 166, 166);
+    outline: none;
 }
 
 button {
-    margin-top: 40px;
+    
     padding: 12px;
-    background-color: #007bff;
+    background-color: #4299f7;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
+    width: 170px;
 }
 
 button:hover {
@@ -56,10 +59,10 @@ button:hover {
 /* Generated Resume Styling */
 
 .profilePicture {
-display: block;
 margin: 0 auto;
-border: 2px solid #007bff;
-box-shadow: 0 4px 10px rgba(199, 86, 86, 1);
+display:flex;
+border: 2px solid white;
+box-shadow: 0 5px 20px black;
 border-radius: 50%;
 width: 200px;
 height: 200px;
@@ -68,40 +71,51 @@ object-fit: cover;
 
 #resume {
     margin-top: 50px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    padding: 0px 20px 20px 20px;
     border-radius: 5px;
-    border-top: 2px solid #007bff;
+    border: 2px solid white;
+    background-color: #fad091;
 }
-
 .resume-content h3 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.resume-content p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    
-}
-
-.resume-content .section-header {
-    font-size: 24px;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #007bff;
-    color: #007bff;
-}
-
-.resume-content .skill {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    margin-right: 5px;
+    padding: 5px;
+    margin-bottom: 10px; 
+    background-color:#e08c0e;  
+    color: white; 
     border-radius: 5px;
-    display: inline-block;
-    margin-bottom: 5px;
+    font-size: rem;
+}
+.resume-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;   
+}
+.resume-content ul li{
+    line-height: 30px;
+    font-size: 1.1rem;
+}
+h1{
+    background-color:rgb(255, 247, 214);
+    padding: 10px;
+    border-radius: 5px;
+}
+h2{
+    background-color:rgb(255, 247, 214);
+    padding: 10px;
+    border-radius: 5px;
+}
+#resume h2{
+    background-color:#f5c379;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+#resume button{
+    background-color: white;
+    color: #e08c0e;
+}
+#resume  button:hover{
+    background-color: #e08c0e;
+    color: white;
+    transition: 1s;
 }
 

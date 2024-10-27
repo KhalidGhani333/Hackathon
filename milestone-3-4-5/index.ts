@@ -1,115 +1,126 @@
-const form = document.getElementById("resume-form") as HTMLFormElement;
-const generatedResume = document.getElementById("generated-resume") as HTMLElement;
-const shareableLinkContainer = document.getElementById("shareable-link-container")as HTMLDivElement;
-const shareableLinkElement = document.getElementById("shareable-link")as HTMLAnchorElement;
-const downloadPdfButton = document.getElementById("download-pdf")as HTMLButtonElement;
 
 
-form.addEventListener("submit", (event: Event) => {
-    event.preventDefault(); 
-
-    // Fetch form data
-    const username = (document.getElementById("username")as HTMLInputElement).value;
-    const profilePictureInput = document.getElementById("profilePicture") as HTMLInputElement;
-    const name = (document.getElementById("name") as HTMLInputElement).value;
-    const email = (document.getElementById("email") as HTMLInputElement).value;
-    const phone = (document.getElementById("phone") as HTMLInputElement).value;
-    const education = (document.getElementById("education") as HTMLInputElement).value;
-    const work = (document.getElementById("work") as HTMLInputElement).value;
-    const skills = (document.getElementById("skills") as HTMLInputElement).value;
-
-    //save form data in localstorage with the username as the key
-    const resumeData ={
-        name,
-        email,
-        phone,
-        education,
-        work,
-        skills
-    };
-    localStorage.setItem(username,JSON.stringify(resumeData));//save the data locally
-
-
-    const profilePictureFile = profilePictureInput.files?.[0]
-    const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : "";
-
-    if (profilePictureInput && name && email && phone && education && work && skills) {
-        // dynamic resume content
-        generatedResume.innerHTML = `
-            <div class="resume-content">
-                <h3 class="section-header">Personal Information</h3>
-                ${profilePictureURL ? `<img src="${profilePictureURL}"alt="Profile Picture" class="profilePicture">`: ''}
-                <p contenteditable="true"><strong>Name:</strong> ${name}</p>
-                <p contenteditable="true"><strong>Email:</strong> ${email}</p>
-                <p contenteditable="true"><strong>Phone:</strong> ${phone}</p>
-
-                <h3 class="section-header">Education</h3>
-                <p contenteditable="true">${education}</p>
-
-                <h3 class="section-header">Work Experience</h3>
-                <p contenteditable="true">${work}</p>
-
-                <h3 class="section-header">Skills</h3>
-                <p contenteditable="true">${skills.split(',').map(skill => `<span class="skill">${skill.trim()}</span>`).join(' ')}</p>
-            </div> `;
-
-            
-
-            //Editable functionality for each section
-              makeSectionsEditable();
-
- } else {
-        alert("Please fill in all fields!");
-    }
-
-    //generate a shareable URL with the username only
-    const shareableURL = `${window.location.origin}?username =${encodeURIComponent(username)}`
-
-    //display the shareable link
-    shareableLinkContainer.style.display = 'block';
-    shareableLinkElement.href = shareableURL
-    shareableLinkElement.textContent = shareableURL
-
-});
-
-//handle PDF Download
-downloadPdfButton.addEventListener("click",() => { window.print();}); //this will open print dialog
-
-//prefill the form based on the username in the URL
-window.addEventListener('DOMContentLoaded',() => {
-    const URLparam = new URLSearchParams(window.location.search);
-    const username = URLparam.get('username');
-
-    if(username){
-        //autofill form if data is found in localstorage
-        const saveResumeData =localStorage.getItem(username);
-        if(saveResumeData){
-            const resumeData =JSON.parse(saveResumeData);
-            (document.getElementById('username')as HTMLInputElement).value=username;
-            (document.getElementById("profilePicture") as HTMLInputElement).value=resumeData.profilePicture;
-            (document.getElementById('name')as HTMLInputElement).value=resumeData.name;
-            (document.getElementById('email')as HTMLInputElement).value=resumeData.email;
-            (document.getElementById('phone')as HTMLInputElement).value=resumeData.phone;
-            (document.getElementById('education')as HTMLInputElement).value=resumeData.education;
-            (document.getElementById('work')as HTMLInputElement).value=resumeData.work;
-            (document.getElementById('skills')as HTMLInputElement).value=resumeData.skills;
-        }
-    }
-});
-
-// Function to make resume sections editable
-function makeSectionsEditable() {
-    const editableSections = document.querySelectorAll('[contenteditable="true"]');
-
-    editableSections.forEach(section => {
-        section.addEventListener('input', (element) => {
-            const target = element.target as HTMLElement;
-            console.log(`Content updated: ${target.innerHTML}`);
-           
-        });
-    });
+// Function to add an additional education field
+function addEducationField() {
+    const educationSection = document.getElementById('education-section') as HTMLDivElement;
+    const newEducationEntry = document.createElement('div');
+    newEducationEntry.className = 'education-entry';
+    newEducationEntry.innerHTML = `
+        <label>Degree and School:</label>
+        <input type="text" class="education" name="education" required>
+    `;
+    educationSection.appendChild(newEducationEntry);
 }
 
+// Function to add an additional work field
+function addWorkField() {
+    const workSection = document.getElementById('work-section') as HTMLDivElement;
+    const newWorkEntry = document.createElement('div');
+    newWorkEntry.className = 'work-entry';
+    newWorkEntry.innerHTML = `
+        <label>Position and Company:</label>
+        <input type="text" class="work" name="work" required>
+    `;
+    workSection.appendChild(newWorkEntry);
+}
 
+// Function to add an additional skill field
+function addSkillField() {
+    const skillsSection = document.getElementById('skills-section') as HTMLDivElement;
+    const newSkillEntry = document.createElement('div');
+    newSkillEntry.className = 'skills-entry';
+    newSkillEntry.innerHTML = `
+        <label>Skill:</label>
+        <input type="text" class="skill" name="skills" required>
+    `;
+    skillsSection.appendChild(newSkillEntry);
+}
 
+// Function to add an additional skill field
+function addHobbiesField() {
+    const hobbySection = document.getElementById('Hobbies-section') as HTMLDivElement;
+    const newhobbyEntry = document.createElement('div');
+    newhobbyEntry.className = 'hobby-entry';
+    newhobbyEntry.innerHTML = `
+        <label>Hobby:</label>
+        <input type="text" class="hobby" name="hobby" required>
+    `;
+    hobbySection.appendChild(newhobbyEntry);
+}
+
+// Generate the resume content on form submission
+document.getElementById('resume-form')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Capture user inputs
+    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const phone = (document.getElementById('phone') as HTMLInputElement).value;
+    const profilePictureInput = document.getElementById('profilePicture') as HTMLInputElement;
+    const profilePictureFile = profilePictureInput.files ? profilePictureInput.files[0] : null;
+    const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : "";
+
+    const educations = Array.from(document.getElementsByClassName('education') as HTMLCollectionOf<HTMLInputElement>).map(input => input.value);
+    const works = Array.from(document.getElementsByClassName('work') as HTMLCollectionOf<HTMLInputElement>).map(input => input.value);
+    const skills = Array.from(document.getElementsByClassName('skill') as HTMLCollectionOf<HTMLInputElement>).map(input => input.value);
+    const hobbies = Array.from(document.getElementsByClassName('hobby') as HTMLCollectionOf<HTMLInputElement>).map(input => input.value);
     
+    // the resume section with the gathered information
+    const generatedResume = document.getElementById('generated-resume') as HTMLDivElement;
+    generatedResume.innerHTML = `
+        <div class="resume-content">
+            <h3>Personal Information</h3>
+            ${profilePictureURL ? `<img src="${profilePictureURL}" alt="Profile Picture" class="profilePicture">` : ''}
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            
+
+            <h3>Education</h3>
+            <ul>${educations.map(edu => `<li>${edu}</li>`).join('')}</ul>
+
+            <h3>Work Experience</h3>
+            <ul>${works.map(work => `<li>${work}</li>`).join('')}</ul>
+
+            <h3>Skills</h3>
+            <ul>${skills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+
+            <h3>Hobbies</h3>
+            <ul>${hobbies.map(hobbies => `<li>${hobbies}</li>`).join('')}</ul>
+            </div>
+    `;
+
+    document.getElementById('resume')!.style.display = 'block';
+});
+
+//          PDF Download 
+
+const downloadPdfButton = document.getElementById('download-pdf') as HTMLButtonElement;
+const resumeContent = document.getElementsByClassName("resume-content") as HTMLCollectionOf<HTMLDivElement>;
+
+declare const html2pdf: any;
+
+downloadPdfButton.addEventListener('click', () => {
+    if (typeof html2pdf === 'undefined') {
+        alert('Error: html2pdf library is not loaded.');
+        return;
+    }
+
+    // Options for PDF generation
+    const resumeOptions = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 1.0 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // Generating PDF from the first element in resumeContent
+    html2pdf()
+        .from(resumeContent[0])  
+        .set(resumeOptions)
+        .save()
+        .catch((error: Error) => {
+            console.error('PDF generation error:', error);
+        });
+});

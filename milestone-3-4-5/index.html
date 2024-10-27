@@ -5,20 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Resume Builder</title>
     <link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 <body>
-    
-
     <div class="container">
-        <h1>Interactive Resume Builder </h1>
+        <h1>Interactive Resume Builder</h1>
 
-        <!--capture user input -->
         <form id="resume-form">
             <!-- Personal Information -->
             <h2>Personal Information</h2>
-
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
 
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
@@ -29,45 +26,66 @@
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" required>
             
-            <label for="profilePicture" >Profile Picture</label>
+            <label for="profilePicture">Profile Picture</label>
             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
 
             <!-- Education Section -->
             <h2>Education</h2>
-            <label for="education">Degree and School:</label>
-            <input type="text" id="education" name="education" required>
+            <div id="education-section">
+                <div class="education-entry">
+                    <label for="education">Degree and School:</label>
+                    <input type="text" class="education" name="education" required>
+                </div>
+            </div>
+            <button type="button" onclick="addEducationField()">Add Another Education</button>
 
             <!-- Work Experience Section -->
             <h2>Work Experience</h2>
-            <label for="work">Position and Company:</label>
-            <input type="text" id="work" name="work" required>
+            <div id="work-section">
+                <div class="work-entry">
+                    <label for="work">Position and Company:</label>
+                    <input type="text" class="work" name="work" required>
+                </div>
+            </div>
+            <button type="button" onclick="addWorkField()">Add Another Position</button>
 
             <!-- Skills Section -->
             <h2>Skills</h2>
-            <label for="skills">Skills (comma separated):</label>
-            <input type="text" id="skills" name="skills" required>
+            <div id="skills-section">
+                <div class="skills-entry">
+                    <label for="skills">Skill:</label>
+                    <input type="text" class="skill" name="skills" required>
+                </div>
+            </div>
+            <button type="button" onclick="addSkillField()">Add Another Skill</button>
+
+            <!-- Hobbies Section -->
+            <h2>Hobbies</h2>
+            <div id="Hobbies-section">
+                <div class="hobby-entry">
+                    <label for="Hobby">Add Your Hobbies</label>
+                    <input type="text" class="hobby" name="hobby" required>
+                </div>
+            </div>
+            <button type="button" onclick="addHobbiesField()">Add Another Hobby</button>
 
             <button type="submit">Generate Resume</button>
         </form>
-        <hr>
-        <!-- Generated Resume -->
-        <section id="resume">
-            <h2>Generated Resume</h2>
-            <div id="generated-resume" class="resume-content">
-            </div>
-        </section>
-        <br>
-        <!--section for shareable link and download option-->
-        <div id="shareable-link-container" style="display: none;">
-            <h2>Shareable Link</h2>
-            <p>Here is your unique link to view or edit your resume</p>
-            <a href="#" id="shareable-link" target="_blank"></a>
-            <br>
-            <button id="download-pdf">Download as PDF</button>
-        </div>
-</div>
         
-    <script src="index.js"></script>
+        <!-- Generated Resume -->
+<section id="resume" style="display: none;">
+    <h2>Generated Resume</h2>
+    <div id="generated-resume" class="resume-content">
+        <!-- Dynamic resume content will go here -->
+        <p>Your resume content...</p>
+    </div>
+    <button id="download-pdf">Download as PDF</button>
+</section>
+
+    </div>
     
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <script src="index.js"></script>
 </html>
