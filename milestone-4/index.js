@@ -31,6 +31,16 @@ function addHobbiesField() {
     newhobbyEntry.innerHTML = "\n        <label>Hobby:</label>\n        <input type=\"text\" class=\"hobby\" name=\"hobby\" required>\n    ";
     hobbySection.appendChild(newhobbyEntry);
 }
+//Show input feilds on the clicking on start button
+var startButton = document.getElementById("startButton");
+var container = document.getElementById("container");
+var openButton = document.getElementById("openButton");
+if (startButton && container) {
+    startButton.addEventListener("click", function () {
+        openButton.style.display = "none";
+        container.style.display = "block";
+    });
+}
 // Generate the resume content on form submission
 (_a = document.getElementById('resume-form')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -47,31 +57,6 @@ function addHobbiesField() {
     var hobbies = Array.from(document.getElementsByClassName('hobby')).map(function (input) { return input.value; });
     // the resume section with the gathered information
     var generatedResume = document.getElementById('generated-resume');
-    generatedResume.innerHTML = "\n        <div class=\"resume-content\">\n            <h3>Personal Information</h3>\n            ".concat(profilePictureURL ? "<img src=\"".concat(profilePictureURL, "\" alt=\"Profile Picture\" class=\"profilePicture\">") : '', "\n            <p><strong>Name:</strong> ").concat(name, "</p>\n            <p><strong>Email:</strong> ").concat(email, "</p>\n            <p><strong>Phone:</strong> ").concat(phone, "</p>\n            \n\n            <h3>Education</h3>\n            <ul>").concat(educations.map(function (edu) { return "<li>".concat(edu, "</li>"); }).join(''), "</ul>\n\n            <h3>Work Experience</h3>\n            <ul>").concat(works.map(function (work) { return "<li>".concat(work, "</li>"); }).join(''), "</ul>\n\n            <h3>Skills</h3>\n            <ul>").concat(skills.map(function (skill) { return "<li>".concat(skill, "</li>"); }).join(''), "</ul>\n\n            <h3>Hobbies</h3>\n            <ul>").concat(hobbies.map(function (hobbies) { return "<li>".concat(hobbies, "</li>"); }).join(''), "</ul>\n            </div>\n    ");
+    generatedResume.innerHTML = "\n        <div class=\"resume-content\">\n            <h3>Personal Information</h3>\n            ".concat(profilePictureURL ? "<img src=\"".concat(profilePictureURL, "\" alt=\"Profile Picture\" class=\"profilePicture\">") : '', "\n            <p><strong>Name:</strong> ").concat(name, "</p>\n            <p><strong>Email:</strong> ").concat(email, "</p>\n            <p><strong>Phone:</strong> ").concat(phone, "</p>\n           \n           \n            \n            <h3>Education</h3>\n            <ul>").concat(educations.map(function (edu) { return "<li>".concat(edu, "</li>"); }).join(''), "</ul>\n\n            <h3>Work Experience</h3>\n            <ul>").concat(works.map(function (work) { return "<li>".concat(work, "</li>"); }).join(''), "</ul>\n             \n            <h3>Skills</h3>\n            <ul>").concat(skills.map(function (skill) { return "<li>".concat(skill, "</li>"); }).join(''), "</ul>\n\n            <h3>Hobbies</h3>\n            <ul>").concat(hobbies.map(function (hobbies) { return "<li>".concat(hobbies, "</li>"); }).join(''), "</ul>\n            </div>\n    ");
     document.getElementById('resume').style.display = 'block';
-});
-//          PDF Download 
-var downloadPdfButton = document.getElementById('download-pdf');
-var resumeContent = document.getElementsByClassName("resume-content");
-downloadPdfButton.addEventListener('click', function () {
-    if (typeof html2pdf === 'undefined') {
-        alert('Error: html2pdf library is not loaded.');
-        return;
-    }
-    // Options for PDF generation
-    var resumeOptions = {
-        margin: 0.5,
-        filename: 'resume.pdf',
-        image: { type: 'jpeg', quality: 1.0 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-    // Generating PDF from the first element in resumeContent
-    html2pdf()
-        .from(resumeContent[0])
-        .set(resumeOptions)
-        .save()
-        .catch(function (error) {
-        console.error('PDF generation error:', error);
-    });
 });

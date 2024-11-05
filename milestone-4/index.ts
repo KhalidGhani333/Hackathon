@@ -1,5 +1,3 @@
-
-
 // Function to add an additional education field
 function addEducationField() {
     const educationSection = document.getElementById('education-section') as HTMLDivElement;
@@ -48,6 +46,20 @@ function addHobbiesField() {
     hobbySection.appendChild(newhobbyEntry);
 }
 
+//Show input feilds on the clicking on start button
+const startButton = document.getElementById("startButton") as HTMLButtonElement;
+const container = document.getElementById("container") as HTMLDivElement;
+const openButton = document.getElementById("openButton") as HTMLDivElement;
+
+
+if (startButton && container ) {
+  startButton.addEventListener("click", () => {
+    openButton.style.display = "none";
+    container.style.display = "block";
+  });
+} 
+
+
 // Generate the resume content on form submission
 document.getElementById('resume-form')?.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -74,14 +86,15 @@ document.getElementById('resume-form')?.addEventListener('submit', function(even
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
+           
+           
             
-
             <h3>Education</h3>
             <ul>${educations.map(edu => `<li>${edu}</li>`).join('')}</ul>
 
             <h3>Work Experience</h3>
             <ul>${works.map(work => `<li>${work}</li>`).join('')}</ul>
-
+             
             <h3>Skills</h3>
             <ul>${skills.map(skill => `<li>${skill}</li>`).join('')}</ul>
 
@@ -93,34 +106,3 @@ document.getElementById('resume-form')?.addEventListener('submit', function(even
     document.getElementById('resume')!.style.display = 'block';
 });
 
-//          PDF Download 
-
-const downloadPdfButton = document.getElementById('download-pdf') as HTMLButtonElement;
-const resumeContent = document.getElementsByClassName("resume-content") as HTMLCollectionOf<HTMLDivElement>;
-
-declare const html2pdf: any;
-
-downloadPdfButton.addEventListener('click', () => {
-    if (typeof html2pdf === 'undefined') {
-        alert('Error: html2pdf library is not loaded.');
-        return;
-    }
-
-    // Options for PDF generation
-    const resumeOptions = {
-        margin: 0.5,
-        filename: 'resume.pdf',
-        image: { type: 'jpeg', quality: 1.0 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-
-    // Generating PDF from the first element in resumeContent
-    html2pdf()
-        .from(resumeContent[0])  
-        .set(resumeOptions)
-        .save()
-        .catch((error: Error) => {
-            console.error('PDF generation error:', error);
-        });
-});

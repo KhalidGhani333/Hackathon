@@ -281,3 +281,13 @@ h1{
     border-radius: 5px;
 }
 
+#resume button{
+    background-color: white;
+    color: #0056b3;
+    border: 2px solid #0056b3;
+}
+#resume  button:hover{
+    background-color: #0072ff;
+    color: white;
+    transition: 1s;
+}
