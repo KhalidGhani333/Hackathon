@@ -1,0 +1,295 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    padding: 20px;
+}
+.startup{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+.wrapper span{
+    position: fixed;
+    bottom: -100px;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    background-color: #18191f;
+    box-shadow: 0 0 50px #0072ff,
+                0 0 100px #0072ff,
+                0 0 150px #0072ff,
+                0 0 200px #0072ff;
+    animation: animate 10s linear infinite;
+}
+.wrapper span:nth-child(1){
+    left: 5%;
+    animation-delay: 1s;
+}
+.wrapper span:nth-child(2){
+    left: 10%;
+    animation-delay: 3s;
+    height: 60px;
+    width: 60px;
+   
+}
+.wrapper span:nth-child(3){
+    left: 20%;
+    animation-delay: 2s;
+}
+.wrapper span:nth-child(4){
+    left: 25%;
+    animation-delay: 5s;
+    height: 80px;
+    width: 80px;
+   
+}
+.wrapper span:nth-child(5){
+    left: 30%;
+    animation-delay: 1s;
+    height: 60px;
+    width: 60px;
+}
+.wrapper span:nth-child(6){
+    left: 40%;
+    animation-delay: 7s;
+    height: 90px;
+    width: 90px;
+}
+.wrapper span:nth-child(7){
+    left: 50%;
+    animation-delay: 6s;
+
+    
+}
+.wrapper span:nth-child(8){
+    left: 60%;
+    animation-delay: 8s;
+    height: 60px;
+    width: 60px;
+}
+.wrapper span:nth-child(9){
+    left: 70%;
+    animation-delay: 6s;
+    height: 100px;
+    width: 100px;
+}
+.wrapper span:nth-child(10){
+    left: 75%;
+    animation-delay: 4s;
+    height: 60px;
+    width: 60px;
+   
+}
+.wrapper span:nth-child(11){
+    left: 80%;
+    animation-delay: 8s;
+    height: 80px;
+    width: 80px;
+   
+}
+.wrapper span:nth-child(12){
+    left: 90%;
+    animation-delay: 4.5s;
+    height: 60px;
+    width: 60px;
+}
+
+@keyframes animate {
+    0%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    80%{
+        opacity: .7;
+    }
+    100%{
+        transform: translateY(-800px) rotate(360deg);
+        opacity: 0;
+    }
+}
+.openButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 2px solid #0072ff;
+    box-shadow: 0px 0px 30px #0072ff;
+    border-radius: 10px;
+    width: 30vw;
+    height: 20vh;
+    animation: ani 10s linear infinite
+    
+}
+.openButton h1{
+    text-align: center;
+}
+.openButton button{
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    background-color: #0072ff;
+    box-shadow: 0 0 10px #0072ff;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+@media (max-width:768px) {
+    .startup{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+    }
+    .openButton{
+        width: 60vw;
+        height: 25vh;
+    }
+}
+
+@keyframes ani {
+    0%{
+        transform: translateY(20);
+        box-shadow: 0 0 100px white;
+    }
+    50%{
+        box-shadow: 0 0 20px white;
+    }
+    100%{
+        box-shadow: none;
+    }
+}
+
+
+.container {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    background:transparent;
+    padding: 20px;
+    box-shadow: 0 4px 10px #0056b3;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: white;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #eeecec;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 95%;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 0 5px 5px #0072ff;
+    outline: none;
+    margin:10px;
+}
+
+button {
+    
+    padding: 12px;
+    background-color: #0072ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 170px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h2{
+    background-color:#0072ff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #0056b3;
+}
+
+/* Generated Resume Styling */
+
+.profilePicture {
+margin: 0 auto;
+display:flex;
+border: 2px solid white;
+box-shadow: 0 5px 20px black;
+border-radius: 50%;
+width: 200px;
+height: 200px;
+object-fit: cover;
+margin-top: 20px;
+}
+
+#resume {
+    margin-top: 50px;
+    padding: 0px 20px 20px 20px;
+    border-radius: 10px;
+    border: 2px solid #0072ff;
+    box-shadow: 0 0 20px white;
+    background-color: white;
+}
+
+.resume-content h3 {
+    padding: 10px;
+    margin-bottom: 10px; 
+    background: linear-gradient(to right, #0072ff , rgb(170, 201, 236));  
+    color: white; 
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #0072ff;
+}
+.resume-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+
+}
+.resume-content ul li{
+    line-height: 30px;
+    font-size: 1.1rem;
+}
+h1{
+    color: white;
+}
+
+#resume h2{
+    background-color: #68a9f8;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+#resume button{
+    background-color: white;
+    color: #e08c0e;
+}
+#resume  button:hover{
+    background-color: #e08c0e;
+    color: white;
+    transition: 1s;
+}
+
+.new{
+    display: flex;
+}
